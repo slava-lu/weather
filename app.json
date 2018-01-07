@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "Weather App",
+    "slug": "weather",
+    "sdkVersion": "24.0.0",
+    "orientation": "portrait"
+  }
+}
