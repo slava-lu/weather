@@ -19,7 +19,7 @@ const TempChart = props => {
       >
         <VictoryAxis
           dependentAxis
-          tickLabelComponent={<VictoryLabel dy={-18}  x={Platform.OS === 'ios' ? 5 : 20} textAnchor="end" />}
+          tickLabelComponent={<VictoryLabel  x={20}  textAnchor="end" />}
           style={{
             axis: { stroke: 'white' },
             ticks: { stroke: 'white', size: 3 },
@@ -52,10 +52,10 @@ const TempChart = props => {
               parseInt(data.high) - parseInt(data.low) :
               Math.round(tempConverter(data.high)) - Math.round(tempConverter(data.low))
             }
-            labels={data => Platform.OS === 'android' ? data.day : ''}
+            labels={data => data.day}
             style={{
               data: { fill: '#E99978', opacity: 0.8 },
-              labels: { fill: 'white', fontSize: 12, padding: 15 }
+              labels: { fill: 'white', fontSize: 12, padding: 10 }
             }}
           />
         </VictoryStack>
