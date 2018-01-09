@@ -13,6 +13,3 @@
 * In local project directory run `yarn` to load modules.
 * Run `yarn start` to start the app.
 * Scan the QR code you will see in the console with the Expo client
-
-P.S. You will see slightly different Bar chart in Android compared with IOS due to some limitation 
-of the used library.
