@@ -1,12 +1,12 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import { getWeatherForecastRequest } from '../utils/weather/weatherFunctions';
 
 const moduleName = 'weather';
 
-const GET_WEATHER_FORECAST_TRIGGER = `${moduleName}/GET_WEATHER_FORECAST_TRIGGER`;
-const GET_WEATHER_FORECAST_REQUEST = `${moduleName}/GET_WEATHER_FORECAST_REQUEST`;
-const GET_WEATHER_FORECAST_SUCCESS = `${moduleName}/GET_WEATHER_FORECAST_SUCCESS`;
-const GET_WEATHER_FORECAST_FAILURE = `${moduleName}/GET_WEATHER_FORECAST_FAILURE`;
+export const GET_WEATHER_FORECAST_TRIGGER = `${moduleName}/GET_WEATHER_FORECAST_TRIGGER`;
+export const GET_WEATHER_FORECAST_REQUEST = `${moduleName}/GET_WEATHER_FORECAST_REQUEST`;
+export const GET_WEATHER_FORECAST_SUCCESS = `${moduleName}/GET_WEATHER_FORECAST_SUCCESS`;
+export const GET_WEATHER_FORECAST_FAILURE = `${moduleName}/GET_WEATHER_FORECAST_FAILURE`;
 
 const INCREASE_INDEX = `${moduleName}/INCREASE_INDEX`;
 const DECREASE_INDEX = `${moduleName}/DECREASE_INDEX`;
@@ -16,9 +16,6 @@ const CHANGE_TO_CELSIUS = `${moduleName}/CHANGE_TO_CELSIUS`;
 const CHANGE_TO_FAHRENHEIT = `${moduleName}/CHANGE_TO_FAHRENHEIT`;
 
 const initialState = {
-  loading: false,
-  loaded: false,
-  error: false,
   isFahrenheit: true,
   currentIndex: 0,
   forecastLength: 0,
@@ -44,23 +41,12 @@ export default function reducer(state = initialState, action) {
     case SET_INDEX:
       return { ...state, currentIndex: payload };
 
-    case GET_WEATHER_FORECAST_REQUEST:
-      return { ...state, loading: true };
-
     case GET_WEATHER_FORECAST_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: false,
         weatherForecast: payload.forecast,
         forecastLength: payload.forecastLength
       };
-
-    case GET_WEATHER_FORECAST_FAILURE: {
-      return { ...state, loading: false, loaded: false, error: true, errorObj: payload };
-    }
-
     default:
       return state;
   }

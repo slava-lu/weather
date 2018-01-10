@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { getWeatherForecast } from '../modules/weather';
+import { getLocation } from '../modules/location';
 
 class Loading extends Component {
   componentDidMount() {
+    this.props.getLocation();
     this.props.getWeatherForecast();
   }
 
   componentWillReceiveProps(nextProps) {
-    const { weather: { loaded } } = nextProps;
+    const { weatherLoadingStatuses: { loaded } } = nextProps;
     if (loaded) {
       this.props.navigation.navigate('weather');
     }
@@ -36,6 +38,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ weather }) => ({ weather });
+const mapStateToProps = ({ weatherLoadingStatuses }) => ({ weatherLoadingStatuses });
 
-export default connect(mapStateToProps, { getWeatherForecast })(Loading);
+export default connect(mapStateToProps, { getWeatherForecast, getLocation })(Loading);
