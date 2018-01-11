@@ -22,7 +22,7 @@ const shadowIOS = {
 const addShadow = Platform.OS ==='ios' ? shadowIOS : shadowAndroid;
 
 const ForecastCardSingle = props => {
-  const { item, isFahrenheit } = props;
+  const { item, isCelsius } = props;
   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   return (
     <View style={[styles.container, addShadow]}>
@@ -30,11 +30,11 @@ const ForecastCardSingle = props => {
       <View style={styles.tempContainer}>
         <View style={styles.tempItemContainer}>
           <Image style={styles.arrow} source={require('../../assets/arrow_up_red.png')} />
-          <Text style={styles.textTemp}>{isFahrenheit ? item.high : Math.round(tempConverter(item.high))}</Text>
+          <Text style={styles.textTemp}>{isCelsius ? item.high : Math.round(tempConverter(item.high))}</Text>
         </View>
         <View style={styles.tempItemContainer}>
           <Image style={styles.arrow} source={require('../../assets/arrow_down_blue.png')} />
-          <Text style={styles.textTemp}>{isFahrenheit ? item.low : Math.round(tempConverter(item.low))}</Text>
+          <Text style={styles.textTemp}>{isCelsius ? item.low : Math.round(tempConverter(item.low))}</Text>
         </View>
       </View>
       <Text style={styles.textMain}>{item.text}</Text>

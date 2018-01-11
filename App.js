@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
-import {Provider} from 'react-redux';
+import { StyleSheet, View } from 'react-native';
+import { Provider } from 'react-redux';
 
 import store from './src/redux';
 import MainNavigator from './src/navigators/MainNavigator';
@@ -10,7 +10,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <MainNavigator/>
+          <MainNavigator />
         </View>
       </Provider>
     );

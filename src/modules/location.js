@@ -1,6 +1,8 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { Location, Permissions } from 'expo';
 
+import { GET_WEATHER_FORECAST_TRIGGER } from './weather';
+
 const moduleName = 'location';
 
 export const GET_LOCATION_TRIGGER = `${moduleName}/GET_LOCATION_TRIGGER`;
@@ -37,6 +39,7 @@ const getLocationSaga = function* () {
     if (status === 'granted') {
       const location = yield call(Location.getCurrentPositionAsync, {});
       yield put({ type: GET_LOCATION_SUCCESS, payload: location  });
+      yield put({ type: GET_WEATHER_FORECAST_TRIGGER });
     } else {
       yield put({ type: GET_LOCATION_FAILURE, payload: 'Permission to access location was denied' });
     }

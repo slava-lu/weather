@@ -7,13 +7,13 @@ import { THEME } from '../../constants';
 import { changeToCelsius, changeToFahrenheit } from '../../modules/weather';
 
 const TempSwitcher = props => {
-  const { weather: { isFahrenheit }, changeToCelsius, changeToFahrenheit } = props;
+  const { weather: { isCelsius }, changeToCelsius, changeToFahrenheit } = props;
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.touchableArea} onPress={changeToCelsius}>
           <View style={styles.button}>
-            <View style={(!isFahrenheit) ? styles.selected : null} />
+            <View style={(isCelsius) ? styles.selected : null} />
           </View>
         </TouchableOpacity>
         <Text style={styles.buttonText}>Celsius</Text>
@@ -21,7 +21,7 @@ const TempSwitcher = props => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.touchableArea} onPress={changeToFahrenheit}>
           <View style={styles.button}>
-            <View style={isFahrenheit ? styles.selected : null} />
+            <View style={!isCelsius ? styles.selected : null} />
           </View>
         </TouchableOpacity>
         <Text style={styles.buttonText}>Fahrenheit</Text>

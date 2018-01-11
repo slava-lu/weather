@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View, FlatList, Image, Dimensions, TouchableOpacity } from 'react-native';
 import ForecastCardSingle from './ForecastCardSingle';
 import { increaseIndex, decreaseIndex, setIndex } from '../../modules/weather';
+import { THEME } from '../../constants';
 
 const width = Dimensions.get('window').width;
 const moveValue = 3;
@@ -28,26 +29,27 @@ class ForecastCardList extends Component {
   };
 
   render() {
-    const { weather: { weatherForecast, currentIndex, forecastLength, isFahrenheit } } = this.props;
-    const weatherCard = weatherForecast.map(item => (
-      <ForecastCardSingle key={item.date} item={item} isFahrenheit={isFahrenheit} />
+    const { weather: { forecast, currentIndex, forecastLength, isCelsius, city } } = this.props;
+    const weatherCard = forecast.map(item => (
+      <ForecastCardSingle key={item.date} item={item} isCelsius={isCelsius} />
     ));
 
     const arrowLeft = (currentIndex > 0)
       ? (<TouchableOpacity style={styles.touchableArea} onPress={this.scrollToLeft}>
         <Image style={styles.arrow} source={require('../../assets/arrow_left_white.png')} />
       </TouchableOpacity>)
-      : <Text />;
+      : <Text style={styles.blankText} />;
 
     const arrowRight = (currentIndex < forecastLength - moveValue)
       ? (<TouchableOpacity style={styles.touchableArea} onPress={this.scrollToRight}>
         <Image style={styles.arrow} source={require('../../assets/arrow_right_white.png')} />
-      </TouchableOpacity>) : <Text />;
+      </TouchableOpacity>) : <Text style={styles.blankText} />;
 
     return (
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           {arrowLeft}
+          <Text style={styles.cityText}>{city}</Text>
           {arrowRight}
         </View>
         <FlatList
@@ -78,12 +80,22 @@ const styles = StyleSheet.create({
     width: 50,
     height: 20
   },
+  blankText: {
+    width: 50,
+    height: 20,
+    backgroundColor: 'transparent'
+  },
+  cityText: {
+    fontSize: 20,
+    color: THEME.TEXT_COLOR,
+    backgroundColor: 'transparent'
+  },
   buttonContainer: {
     height: 80,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20
+    paddingHorizontal: 15
   }
 });
 

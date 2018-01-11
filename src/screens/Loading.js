@@ -8,12 +8,12 @@ import { getLocation } from '../modules/location';
 class Loading extends Component {
   componentDidMount() {
     this.props.getLocation();
-    this.props.getWeatherForecast();
   }
 
   componentWillReceiveProps(nextProps) {
-    const { weatherLoadingStatuses: { loaded } } = nextProps;
-    if (loaded) {
+    const { weatherAPI: { loaded } } = nextProps;
+    const { weather: { forecast } } = nextProps;
+    if (loaded || forecast.length > 0 ) {
       this.props.navigation.navigate('weather');
     }
   }
@@ -31,13 +31,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#83868B'
   },
   textStyle: {
-    fontSize: 20
+    fontSize: 20,
+    color: 'white'
   }
 });
 
-const mapStateToProps = ({ weatherLoadingStatuses }) => ({ weatherLoadingStatuses });
+const mapStateToProps = ({ weatherAPI, weather }) => ({ weatherAPI, weather });
 
 export default connect(mapStateToProps, { getWeatherForecast, getLocation })(Loading);

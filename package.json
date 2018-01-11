@@ -20,6 +20,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@redux-offline/redux-offline": "^2.2.1",
     "babel-eslint": "^8.1.2",
     "eslint": "^4.14.0",
     "eslint-plugin-react": "^7.5.1",

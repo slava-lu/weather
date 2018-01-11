@@ -1,8 +1,8 @@
 import {
-  GET_LOCATION_REQUEST,
-  GET_LOCATION_SUCCESS,
-  GET_LOCATION_FAILURE
-} from './location';
+  GET_WEATHER_FORECAST_REQUEST,
+  GET_WEATHER_FORECAST_SUCCESS,
+  GET_WEATHER_FORECAST_FAILURE
+} from '../weather';
 
 const initialState = {
   loading: false,
@@ -15,10 +15,10 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_LOCATION_REQUEST:
+    case GET_WEATHER_FORECAST_REQUEST:
       return { ...state, loading: true };
 
-    case GET_LOCATION_SUCCESS:
+    case GET_WEATHER_FORECAST_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
         error: false
       };
 
-    case GET_LOCATION_FAILURE: {
+    case GET_WEATHER_FORECAST_FAILURE: {
       return {
         ...state,
         loading: false,
