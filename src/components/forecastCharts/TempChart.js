@@ -1,13 +1,13 @@
 import React from 'react';
 import { VictoryBar, VictoryStack, VictoryChart, VictoryAxis, VictoryLabel } from 'victory-native';
-import { View, StyleSheet ,Dimensions, Platform } from 'react-native';
+import { View, StyleSheet ,Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 
 import { tempConverter } from '../../utils/weather/weatherFunctions';
 const width = Dimensions.get('window').width;
 
 const TempChart = props => {
-  const { isFahrenheit, weatherForecast } = props.weather;
+  const { isCelsius, forecast } = props.weather;
 
   return (
     <View style={styles.container}>
@@ -28,27 +28,19 @@ const TempChart = props => {
         />
         <VictoryStack >
           <VictoryBar
-            animate={{
-              duration: 500,
-              onLoad: { duration: 0 }
-            }}
             barRatio={0.9}
-            data={weatherForecast}
+            data={forecast}
             x="date"
-            y={data => isFahrenheit ? parseInt(data.low) : Math.round(tempConverter(data.low))}
+            y={data => isCelsius ? parseInt(data.low) : Math.round(tempConverter(data.low))}
             style={{
               data: { fill: '#619CFF', opacity: 0.8 }
             }}
           />
           <VictoryBar
-            animate={{
-              duration: 500,
-              onLoad: { duration: 0 }
-            }}
             barRatio={0.9}
-            data={weatherForecast}
+            data={forecast}
             x="date"
-            y={data => isFahrenheit ?
+            y={data => isCelsius ?
               parseInt(data.high) - parseInt(data.low) :
               Math.round(tempConverter(data.high)) - Math.round(tempConverter(data.low))
             }
