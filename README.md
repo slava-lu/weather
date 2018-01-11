@@ -2,7 +2,7 @@
 
 <img align="left" src="screen.jpg">
 
-#### features
+#### Features
 * shows 10 days weather forecast for your location
 * sliding weather cards
 * bar chart for high and low temperature
