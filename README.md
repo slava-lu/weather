@@ -1,6 +1,6 @@
 ## This is the source code for the weather app
 
-<img align="left" src="src/screen.jpg">
+<img align="left" src="screen.jpg">
 
 #### features
 * shows 10 days weather forecast for your location
