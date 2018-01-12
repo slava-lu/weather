@@ -57,7 +57,15 @@ const TempChart = props => {
             x="date"
             y={data => showTempBottom(data, isCelsius)}
             style={{
-              data: { fill: (datum) => datum.y <= 0 ? '#E99978' : '#619CFF', opacity: 0.8 }
+              data: {
+                fill: (datum) =>  {
+                  if (isCelsius) {
+                    return (datum.low < 0 && datum.high < 0) ? '#E99978' : '#619CFF';
+                  } else {
+                    return (tempConverter(datum.low) < 0 && tempConverter(datum.high) < 0) ? '#E99978' : '#619CFF';
+                  }
+                },
+                opacity: 0.8 }
             }}
           />
           <VictoryBar

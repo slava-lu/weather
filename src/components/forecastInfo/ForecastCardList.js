@@ -5,6 +5,8 @@ import ForecastCardSingle from './ForecastCardSingle';
 import { increaseIndex, decreaseIndex, setIndex } from '../../modules/weather';
 import { THEME } from '../../constants';
 
+import { tempConverter } from '../../utils/weather/weatherFunctions';
+
 const width = Dimensions.get('window').width;
 const moveValue = 3;
 
@@ -29,7 +31,8 @@ class ForecastCardList extends Component {
   };
 
   render() {
-    const { weather: { forecast, currentIndex, forecastLength, isCelsius, city } } = this.props;
+    const { weather: { forecast, currentIndex, forecastLength, isCelsius, city, currentTemp } } = this.props;
+    const tempSymbol = isCelsius ? ' C' : ' F';
     const weatherCard = forecast.map(item => (
       <ForecastCardSingle key={item.date} item={item} isCelsius={isCelsius} />
     ));
@@ -49,7 +52,10 @@ class ForecastCardList extends Component {
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           {arrowLeft}
-          <Text style={styles.cityText}>{city}</Text>
+          <View style={styles.cityContainer}>
+            <Text style={styles.cityText}>{city},</Text>
+            <Text style={styles.tempText}>{isCelsius ? currentTemp : parseInt(tempConverter(currentTemp))}{tempSymbol}</Text>
+          </View>
           {arrowRight}
         </View>
         <FlatList
@@ -89,6 +95,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: THEME.TEXT_COLOR,
     backgroundColor: 'transparent'
+  },
+  tempText: {
+    fontSize: 22,
+    color: THEME.TEXT_COLOR,
+    backgroundColor: 'transparent',
+    paddingLeft: 10,
+  },
+  cityContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonContainer: {
     height: 80,

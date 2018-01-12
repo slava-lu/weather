@@ -19,6 +19,7 @@ const initialState = {
   isCelsius: true,
   currentIndex: 0,
   forecastLength: 0,
+  currentTemp: null,
   city: '',
   forecast: []
 };
@@ -91,10 +92,12 @@ const getWeatherForecastSaga = function* () {
     const result = yield call(getWeatherForecastRequest, latitude, longitude );
     if (result.response.ok) {
       const weatherData = result.data;
+      console.log('weatherData', weatherData)
       const forecast = weatherData.query.results.channel.item.forecast;
       const city = weatherData.query.results.channel.location.city;
       const forecastLength = forecast.length;
-      yield put({ type: GET_WEATHER_FORECAST_SUCCESS, payload: { forecast, forecastLength, city } });
+      const currentTemp = weatherData.query.results.channel.item.condition.temp;
+      yield put({ type: GET_WEATHER_FORECAST_SUCCESS, payload: { forecast, forecastLength, city, currentTemp } });
     } else {
       const { serverError, status: errorStatusCode } = result.error;
       yield put({ type: GET_WEATHER_FORECAST_FAILURE, payload: { isServerError: true, serverError, errorStatusCode } });
