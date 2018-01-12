@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryBar, VictoryStack, VictoryChart, VictoryAxis, VictoryLabel, Bar } from 'victory-native';
+import { VictoryBar, VictoryStack, VictoryChart, VictoryAxis, VictoryLabel } from 'victory-native';
 import { View, StyleSheet ,Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -30,9 +30,8 @@ const showTempTop = (data, isCelsius) => {
       Math.round(tempConverter(data.low)) - Math.round(tempConverter(data.high));
   }
 };
-
 const TempChart = props => {
-  const { isCelsius, forecast } = props.weather;
+  const { isCelsius, forecast } = props;
   return (
     <View style={styles.container}>
       <VictoryChart
@@ -93,5 +92,8 @@ const styles = StyleSheet.create({
     zIndex: 1
   }
 });
-const mapStateToProps = ({ weather }) => ({ weather });
+const mapStateToProps = ({ weather }) => ({
+  isCelsius: weather.isCelsius,
+  forecast: weather.forecast
+});
 export default connect(mapStateToProps)(TempChart);

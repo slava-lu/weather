@@ -92,7 +92,6 @@ const getWeatherForecastSaga = function* () {
     const result = yield call(getWeatherForecastRequest, latitude, longitude );
     if (result.response.ok) {
       const weatherData = result.data;
-      console.log('weatherData', weatherData)
       const forecast = weatherData.query.results.channel.item.forecast;
       const city = weatherData.query.results.channel.location.city;
       const forecastLength = forecast.length;
