@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "Weather App",
+    "name": "Simple Weather App",
     "version": "1.0",
     "slug": "weather",
     "icon": "./icon.png",
     "sdkVersion": "24.0.0",
     "orientation": "portrait",
     "ios": {
-      "bundleIdentifier": "com.smartservices.hubexengineer"
+      "bundleIdentifier": "com.slava-lu.weather"
     },
     "android": {
-      "package": "com.smartservices.hubexengineer"
+      "package": "com.slava-lu.weather"
     }
   }
 }
