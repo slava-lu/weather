@@ -7,10 +7,11 @@
     "sdkVersion": "24.0.0",
     "orientation": "portrait",
     "ios": {
-      "bundleIdentifier": "com.slava-lu.weather"
+      "bundleIdentifier": "com.slavalu.weather"
     },
     "android": {
-      "package": "com.slava-lu.weather"
+      "package": "com.slavalu.weather",
+      "permissions": ["ACCESS_COARSE_LOCATION"]
     }
   }
 }
