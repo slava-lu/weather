@@ -32,6 +32,6 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-saga": "^0.16.0",
-    "victory-native": "0.15.0"
+    "victory-native": "0.16.6"
   }
 }
