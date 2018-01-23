@@ -13,6 +13,7 @@ const MainNavigator = TabNavigator({
 }, {
   animationEnabled: false,
   swipeEnabled: false,
+  backBehavior: 'none',
   navigationOptions: {
     tabBarVisible: false
   }
