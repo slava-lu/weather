@@ -1,6 +1,6 @@
 ## This is the source code for the weather app
 
-<img align="left" src="screenshot.jpg" height="450px">
+<img align="left" src="screenshot.jpg" height="500px">
 <a href='https://play.google.com/store/apps/details?id=com.slavalu.weather&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' width='200' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
 #### Features
